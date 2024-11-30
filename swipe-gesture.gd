@@ -1,4 +1,4 @@
-extends SubViewportContainer
+extends Label
 
 
 func _input(event):
@@ -13,9 +13,11 @@ func _input(event):
 		var speed = event.velocity
 		
 		# Print the values for debugging
-		print("Drag relative movement: ", relative)
-		print("Drag position: ", position)
-		print("Drag speed: ", speed)
+		#print("Drag relative movement: ", relative)
+		#print("Drag position: ", position)
+		#print("Drag speed: ", speed)
 		
 		# Example: Move a node based on the drag
 		position += relative
+		
+		text = 'position_x: ' + str(position.x) + '\rrelative: ' + str(int(relative.x))

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw873r5tvf3nr"]
+[gd_scene load_steps=9 format=3 uid="uid://dw873r5tvf3nr"]
 
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_hfwmw"]
 [ext_resource type="Script" path="res://mobile_game.gd" id="1_nrfln"]
+[ext_resource type="Script" path="res://swipe-gesture.gd" id="3_yhl7m"]
 [ext_resource type="Script" path="res://mesh_instance_3d.gd" id="5_ks0yn"]
 
 [sub_resource type="Gradient" id="Gradient_cbi5d"]
@@ -147,7 +148,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "0.0.2"
 
-[node name="SwipInstructions" type="Label" parent="Labels"]
+[node name="SwipeInstructions" type="Label" parent="Labels"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -159,6 +160,20 @@ offset_bottom = 400.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 25
 text = "Swipe cube left/right"
+
+[node name="SwipeData" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 410.0
+offset_top = 415.0
+offset_right = 660.0
+offset_bottom = 495.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "position data"
+script = ExtResource("3_yhl7m")
 
 [node name="JoystickDisplay" type="Label" parent="Labels"]
 offset_left = 30.0
