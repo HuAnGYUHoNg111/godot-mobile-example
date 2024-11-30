@@ -1,0 +1,219 @@
+[gd_scene load_steps=8 format=3 uid="uid://dw873r5tvf3nr"]
+
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_hfwmw"]
+[ext_resource type="Script" path="res://mobile_game.gd" id="1_nrfln"]
+[ext_resource type="Script" path="res://mesh_instance_3d.gd" id="5_ks0yn"]
+
+[sub_resource type="Gradient" id="Gradient_cbi5d"]
+offsets = PackedFloat32Array(0.440367, 1)
+colors = PackedColorArray(0.0981726, 0.270104, 0.419386, 1, 0.176419, 0.176419, 0.176419, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g7oqn"]
+gradient = SubResource("Gradient_cbi5d")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vuj8r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3ncj"]
+albedo_color = Color(0.574561, 0.797725, 0.885648, 1)
+
+[node name="MobileGame" type="Node3D"]
+script = ExtResource("1_nrfln")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_g7oqn")
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("1_hfwmw")]
+offset_top = -314.0
+offset_right = 492.0
+offset_bottom = 2.0
+pressed_color = Color(1, 1, 1, 1)
+joystick_mode = 1
+visibility_mode = 2
+
+[node name="ButtonA" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -378.0
+offset_top = -148.0
+offset_right = -245.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "A"
+
+[node name="ButtonB" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -322.0
+offset_right = -187.0
+offset_bottom = -168.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "B"
+
+[node name="ButtonC" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -172.0
+offset_top = -383.0
+offset_right = -25.0
+offset_bottom = -257.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "C"
+
+[node name="ButtonFullScreen" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_top = 27.0
+offset_right = -29.0
+offset_bottom = 111.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+toggle_mode = true
+text = "FS"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_top = 101.0
+offset_right = 192.0
+offset_bottom = 357.0
+grow_horizontal = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(400, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.895487, 0.445088, 0, -0.445088, 0.895487, 0, 2.00157, 4.01735)
+current = true
+fov = 24.6
+size = 4.046
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.451796, 0, -0.892121, 0, 1, 0, 0.892121, 0, 0.451796, 0, 0, 0)
+mesh = SubResource("BoxMesh_vuj8r")
+surface_material_override/0 = SubResource("StandardMaterial3D_l3ncj")
+script = ExtResource("5_ks0yn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -3, 0, 0)
+
+[node name="Labels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VersionNumber" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 543.0
+offset_right = 95.0
+offset_bottom = 585.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "0.0.2"
+
+[node name="SwipInstructions" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 410.0
+offset_top = 358.0
+offset_right = 660.0
+offset_bottom = 400.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Swipe cube left/right"
+
+[node name="JoystickDisplay" type="Label" parent="Labels"]
+offset_left = 30.0
+offset_top = 24.0
+offset_right = 285.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 25
+text = "Vector2( position)"
+
+[node name="APressedLabel" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 615.0
+offset_top = 494.0
+offset_right = 720.0
+offset_bottom = 535.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Pressed"
+
+[node name="BPressedLabel" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 773.0
+offset_top = 247.0
+offset_right = 910.0
+offset_bottom = 289.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Pressed"
+horizontal_alignment = 1
+
+[node name="CPressedLabel" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 952.0
+offset_top = 175.0
+offset_right = 1089.0
+offset_bottom = 217.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Pressed"
+horizontal_alignment = 1
