@@ -1,5 +1,7 @@
 # Godot 4.3 Mobile Template
 
+![Screenshot](./readme.png)
+
 See example: https://symphonious-fairy-94ef1f.netlify.app/
 
 This project uses the virtual joystick plugin which works great out of the box. The main things I added was a bit of logic to make sure the buttons worked with the touch events and a full screen toggle. The main thing to get buttons to work in Godot 4 is to make sure the project settings have the "Pointer" settings enabled so the following two settings are on:
