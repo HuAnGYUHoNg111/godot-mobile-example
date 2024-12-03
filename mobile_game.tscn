@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw873r5tvf3nr"]
+[gd_scene load_steps=14 format=3 uid="uid://dw873r5tvf3nr"]
 
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_hfwmw"]
 [ext_resource type="Script" path="res://mobile_game.gd" id="1_nrfln"]
 [ext_resource type="Script" path="res://swipe-gesture.gd" id="3_yhl7m"]
+[ext_resource type="Texture2D" uid="uid://bwxir2gwx74t4" path="res://button-rect.png" id="5_bq1yj"]
 [ext_resource type="Script" path="res://mesh_instance_3d.gd" id="5_ks0yn"]
 
 [sub_resource type="Gradient" id="Gradient_cbi5d"]
@@ -19,10 +20,29 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3ncj"]
 albedo_color = Color(0.574561, 0.797725, 0.885648, 1)
 
-[node name="MobileGame" type="Node3D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xvxv"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5c77"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk52i"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx4md"]
+size = Vector2(100, 100)
+
+[node name="MobileGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_nrfln")
 
 [node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,6 +51,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_g7oqn")
 
 [node name="Virtual Joystick" parent="." instance=ExtResource("1_hfwmw")]
+layout_mode = 1
 offset_top = -314.0
 offset_right = 492.0
 offset_bottom = 2.0
@@ -38,67 +59,21 @@ pressed_color = Color(1, 1, 1, 1)
 joystick_mode = 1
 visibility_mode = 2
 
-[node name="ButtonA" type="Button" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
+[node name="VersionNumber" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -378.0
-offset_top = -148.0
-offset_right = -245.0
-offset_bottom = -24.0
-grow_horizontal = 0
+offset_left = 15.0
+offset_top = -53.0
+offset_right = 84.0
+offset_bottom = -11.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 40
-text = "A"
-
-[node name="ButtonB" type="Button" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -322.0
-offset_right = -187.0
-offset_bottom = -168.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 40
-text = "B"
-
-[node name="ButtonC" type="Button" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -172.0
-offset_top = -383.0
-offset_right = -25.0
-offset_bottom = -257.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 40
-text = "C"
-
-[node name="ButtonFullScreen" type="Button" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -108.0
-offset_top = 27.0
-offset_right = -29.0
-offset_bottom = 111.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
-toggle_mode = true
-text = "FS"
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+theme_override_font_sizes/font_size = 25
+text = "0.0.2"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -130,33 +105,24 @@ script = ExtResource("5_ks0yn")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -3, 0, 0)
 
 [node name="Labels" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VersionNumber" type="Label" parent="Labels"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = 543.0
-offset_right = 95.0
-offset_bottom = 585.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 25
-text = "0.0.2"
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -3.5
+offset_right = 3.5
+offset_bottom = 4.0
+grow_horizontal = 2
 
 [node name="SwipeInstructions" type="Label" parent="Labels"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 410.0
-offset_top = 358.0
-offset_right = 660.0
-offset_bottom = 400.0
+offset_left = -132.0
+offset_top = 357.0
+offset_right = 118.0
+offset_bottom = 399.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 25
 text = "Swipe cube left/right"
@@ -166,16 +132,18 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 410.0
-offset_top = 415.0
-offset_right = 660.0
-offset_bottom = 495.0
+offset_left = -133.5
+offset_top = 405.0
+offset_right = 116.5
+offset_bottom = 442.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 20
 text = "position data"
+horizontal_alignment = 1
 script = ExtResource("3_yhl7m")
 
 [node name="JoystickDisplay" type="Label" parent="Labels"]
+layout_mode = 0
 offset_left = 30.0
 offset_top = 24.0
 offset_right = 285.0
@@ -183,52 +151,101 @@ offset_bottom = 66.0
 theme_override_font_sizes/font_size = 25
 text = "Vector2( position)"
 
-[node name="APressedLabel" type="Label" parent="Labels"]
+[node name="BottomRightAnchor" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 615.0
-offset_top = 494.0
-offset_right = 720.0
-offset_bottom = 535.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="BottomRightAnchor"]
+position = Vector2(-333, -80)
+scale = Vector2(0.816794, 0.816794)
+texture_normal = ExtResource("5_bq1yj")
+shape = SubResource("RectangleShape2D_6xvxv")
+action = "custom_action_1"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="BottomRightAnchor"]
+position = Vector2(-368, -333)
+scale = Vector2(2.00763, 2.00763)
+texture_normal = ExtResource("5_bq1yj")
+shape = SubResource("RectangleShape2D_x5c77")
+action = "custom_action_2"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="BottomRightAnchor"]
+position = Vector2(-82, -338)
+scale = Vector2(0.82085, 0.847328)
+texture_normal = ExtResource("5_bq1yj")
+shape = SubResource("RectangleShape2D_vk52i")
+action = "custom_action_3"
+
+[node name="APressedLabel" type="Label" parent="BottomRightAnchor"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -499.0
+offset_top = -91.0
+offset_right = -394.0
+offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "Pressed"
 
-[node name="BPressedLabel" type="Label" parent="Labels"]
+[node name="BPressedLabel" type="Label" parent="BottomRightAnchor"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 773.0
-offset_top = 247.0
-offset_right = 910.0
-offset_bottom = 289.0
+offset_left = -339.0
+offset_top = -399.0
+offset_right = -202.0
+offset_bottom = -357.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "Pressed"
 horizontal_alignment = 1
 
-[node name="CPressedLabel" type="Label" parent="Labels"]
+[node name="CPressedLabel" type="Label" parent="BottomRightAnchor"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 952.0
-offset_top = 175.0
-offset_right = 1089.0
-offset_bottom = 217.0
+offset_left = -136.0
+offset_top = -428.0
+offset_right = -14.0
+offset_bottom = -386.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "Pressed"
 horizontal_alignment = 1
+
+[node name="TopRightAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="FullScreenButton" type="TouchScreenButton" parent="TopRightAnchor"]
+position = Vector2(-101, 8)
+scale = Vector2(0.847328, 0.847328)
+texture_normal = ExtResource("5_bq1yj")
+shape = SubResource("RectangleShape2D_tx4md")
+action = "full_screen"

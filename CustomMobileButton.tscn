@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://djs1t1o6fa3p7"]
+
+[ext_resource type="Texture2D" uid="uid://bwxir2gwx74t4" path="res://button-rect.png" id="1_jws5w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75q5s"]
+size = Vector2(60, 60)
+
+[node name="FullScreenButton" type="TouchScreenButton"]
+shape = SubResource("RectangleShape2D_75q5s")
+shape_centered = false
+action = "full_screen"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = -43.0
+offset_top = -51.0
+offset_right = 51.0
+offset_bottom = 49.0
+texture = ExtResource("1_jws5w")
+region_rect = Rect2(13.7844, 6.35158, 124.53, 117.976)
+patch_margin_left = 42
+patch_margin_top = 38
+patch_margin_right = 42
+patch_margin_bottom = 36
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1

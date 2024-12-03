@@ -1,31 +1,24 @@
-extends Node3D
+extends Control
 
-
-# buttons to put on the UI that can be clicked
-@onready var button_a: Button = $ButtonA
-@onready var button_b: Button = $ButtonB
-@onready var button_c: Button = $ButtonC
-
-@onready var button_full_screen: Button = $ButtonFullScreen
-
-
+@onready var full_screen_button: TouchScreenButton = $TopRightAnchor/FullScreenButton
 
 # label display to show UI feedback
 @onready var joystick_display: Label = $Labels/JoystickDisplay
-@onready var a_pressed_label: Label = $Labels/APressedLabel
-@onready var b_pressed_label: Label = $Labels/BPressedLabel
-@onready var c_pressed_label: Label = $Labels/CPressedLabel
+@onready var a_pressed_label: Label = $BottomRightAnchor/APressedLabel
+@onready var b_pressed_label: Label = $BottomRightAnchor/BPressedLabel
+@onready var c_pressed_label: Label = $BottomRightAnchor/CPressedLabel
+
 
 func _ready() -> void:
-	button_full_screen.toggled.connect(_full_screen_toggled)
-	
-	
-func _full_screen_toggled(is_full_screen: bool) -> void:
-	
-	if is_full_screen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	full_screen_button.released.connect(_full_screen_toggled)
+
+
+func _full_screen_toggled() -> void:
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)	
 	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)		
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 
 func _process(_delta: float) -> void:
 	
@@ -36,6 +29,6 @@ func _process(_delta: float) -> void:
 	var move_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down", 0)
 	joystick_display.text = 'Joystick: ' + str( move_vector )
 	
-	a_pressed_label.visible = button_a.is_pressed() || Input.is_action_pressed("custom_action_1") 
-	b_pressed_label.visible = button_b.is_pressed() || Input.is_action_pressed("custom_action_2") 
-	c_pressed_label.visible = button_c.is_pressed() || Input.is_action_pressed("custom_action_3")
+	a_pressed_label.visible = Input.is_action_pressed("custom_action_1") 
+	b_pressed_label.visible = Input.is_action_pressed("custom_action_2") 
+	c_pressed_label.visible = Input.is_action_pressed("custom_action_3")
